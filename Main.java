@@ -26,6 +26,11 @@ public class Main {
 		dFrame = new DisplayFrame(uI, "Cobweb MUD", width, height);
 		// bind user interface to display frame
 		dFrame.bind();
+		//log in to server 
+		String str = cClient.read();
+		if (str.equals("LOGIN")) {
+			new AccountManager(cClient);
+		}
 	}
 
 	// handles communication between UserInterface and CobwebClient
