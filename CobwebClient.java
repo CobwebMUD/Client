@@ -34,6 +34,7 @@ public class CobwebClient {
 		try {
 			// read message in through buffered reader until a "new line" ->
 			// "\n" character
+			in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			return in.readLine();
 		} catch (IOException e) {
 			return "FAILED TO READ FROM SOCKET!!!";

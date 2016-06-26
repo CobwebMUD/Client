@@ -14,6 +14,7 @@ public class DisplayFrame extends JFrame {
 		this.content = content;
 		super.setSize(width, height);
 		super.setTitle(title);
+		super.setLocationRelativeTo(null);
 		super.setVisible(true);
 	}
 

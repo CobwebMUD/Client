@@ -19,6 +19,7 @@ public class UserInterface extends JPanel {
 
 	// @param -> width of window, height of window
 	public UserInterface(int width, int height) {
+		super.setBackground(Color.BLACK);
 		// format UI stuff below
 		super.setLayout(new GridBagLayout());
 		GridBagConstraints gBC = new GridBagConstraints();
@@ -38,6 +39,8 @@ public class UserInterface extends JPanel {
 		js.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		super.add(js, gBC);
 		userIn = new JTextArea();
+		userIn.setBackground(Color.BLACK);
+		userIn.setForeground(Color.WHITE);
 		userIn.setEditable(true);
 		gBC = new GridBagConstraints();
 		gBC.fill = GridBagConstraints.HORIZONTAL;

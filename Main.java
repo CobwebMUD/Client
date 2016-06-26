@@ -26,10 +26,10 @@ public class Main {
 		dFrame = new DisplayFrame(uI, "Cobweb MUD", width, height);
 		// bind user interface to display frame
 		dFrame.bind();
-		//log in to server 
+		// log in to server
 		String str = cClient.read();
 		if (str.equals("LOGIN")) {
-			new AccountManager(cClient);
+			new AccountManager(cClient, dFrame);
 		}
 	}
 
@@ -44,24 +44,31 @@ public class Main {
 			while (true) {
 				// wait for server to send a message then append it to the uI
 				String fromServ = cClient.read();
-				uI.append("Cobweb: '" + fromServ + "'");
-				// have user enter a response <- NOTE uI.readIN() BLOCKS!!!
-				fromU = uI.readIn();
-				// if user enters nothing send null to server. "" is associated
-				// with a dead client *_*
-				if (fromU.equals("")) {
-					cClient.send("null");
+				// If message starts with RSVP response is expected from user
+				if (fromServ.substring(0, 4).equals("RSVP")) {
+					uI.append("Cobweb: '" + fromServ.substring(4) + "'");
+					// have user enter a response <- NOTE uI.readIN() BLOCKS!!!
+					fromU = uI.readIn();
+					// if user enters nothing send null to server. "" is
+					// associated
+					// with a dead client *_*
+					if (fromU.equals("")) {
+						cClient.send("null");
+					} else {
+						cClient.send(fromU);
+					}
+					
+					if (fromServ.contains("Press enter to exit game")) {
+						break;
+					}
 				} else {
-					cClient.send(fromU);
+					uI.append("Cobweb: '" + fromServ + "'");
 				}
 				/*
 				 * if server sends back any text containing
 				 * "Press enter to exit game" then stop client server
 				 * interaction... (sloppy i know i will fix soon ~ rice)
 				 */
-				if (fromServ.contains("Press enter to exit game")) {
-					break;
-				}
 			}
 		} else {
 			// extra options for client
