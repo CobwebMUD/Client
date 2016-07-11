@@ -24,15 +24,17 @@ public class AccountManager {
 	}
 
 	private void newAccount() {
-		cClient.send("NEWACC");
-		String userName = JOptionPane.showInputDialog(frame, "Enter Username");
-		String pass = JOptionPane.showInputDialog(frame, "Enter password");
-		String email = JOptionPane.showInputDialog(frame, "Enter email");
-		cClient.send("UserInfo/" + userName + "/" + pass + "/" + email + "/");
+		cClient.send("NEW");
+		String prompt = cClient.read();
+		cClient.send(JOptionPane.showInputDialog(frame, prompt));
+		prompt = cClient.read();
+		cClient.send(JOptionPane.showInputDialog(frame, prompt));
+		prompt = cClient.read();
+		cClient.send(JOptionPane.showInputDialog(frame, prompt));
 	}
 
-	private void existingAccount() {
-		cClient.send("EXISTACC");
+	private void existingAccount() {	
+		cClient.send("EXISTING");
 		String prompt = cClient.read();
 		cClient.send(JOptionPane.showInputDialog(frame, prompt));
 		prompt = cClient.read();

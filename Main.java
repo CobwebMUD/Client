@@ -39,7 +39,7 @@ public class Main {
 		String fromU = uI.readIn();
 		if (fromU.equals("play")) {
 			// tell server to start game script
-			cClient.send("GAMESTART");
+			cClient.send("   GAMESTART   ");
 			// while game script is running...
 			while (true) {
 				// wait for server to send a message then append it to the uI
@@ -57,7 +57,7 @@ public class Main {
 					} else {
 						cClient.send(fromU);
 					}
-					
+
 					if (fromServ.contains("Press enter to exit game")) {
 						break;
 					}
