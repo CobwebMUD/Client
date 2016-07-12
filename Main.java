@@ -54,6 +54,9 @@ public class Main {
 					// with a dead client *_*
 					if (fromU.equals("")) {
 						cClient.send("null");
+					} else if (fromU.equals("list inv")) {
+						cClient.send("list inv");
+						uI.append(cClient.read().replaceAll("/", "\n"));
 					} else {
 						cClient.send(fromU);
 					}
