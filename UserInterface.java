@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -50,6 +51,13 @@ public class UserInterface extends JPanel {
 		gBC.ipady = 10;
 		gBC.weighty = 0;
 		super.add(userIn, gBC);
+	}
+	
+	public void createChatRoom(String addr, int port) {
+		JFrame jf = new JFrame();
+		jf.add(new ChatRoomClient(addr, port));
+		jf.setSize(400, 220);
+		jf.setVisible(true);
 	}
 
 	// blocking method that returns input from user

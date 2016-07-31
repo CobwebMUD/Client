@@ -23,6 +23,7 @@ public class Main {
 		// Initialize objects
 		cClient = new CobwebClient("127.0.0.1", 9876);
 		uI = new UserInterface(width, height);
+		uI.createChatRoom("127.0.0.1", 8575);
 		dFrame = new DisplayFrame(uI, "Cobweb MUD", width, height);
 		// bind user interface to display frame
 		dFrame.bind();
